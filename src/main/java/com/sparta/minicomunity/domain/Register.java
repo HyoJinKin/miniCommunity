@@ -9,13 +9,13 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Register extends TimeStamped{
+public class Register extends TimeStamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String userId;
 
     @Column(nullable = false)
@@ -24,10 +24,10 @@ public class Register extends TimeStamped{
     @Column(nullable = false)
     private String userPwdCheck;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nickName;
 
-    public Register(RegisterDto registerDto){
+    public Register(RegisterDto registerDto) {
         this.userId = registerDto.getUserId();
         this.password = registerDto.getPassword();
         this.userPwdCheck = registerDto.getUserPwdCheck();

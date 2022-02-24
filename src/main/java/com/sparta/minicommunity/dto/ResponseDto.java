@@ -1,4 +1,4 @@
-package com.sparta.minicomunity.Dto;
+package com.sparta.minicommunity.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +9,11 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class ResponseDto {
 
-    private boolean check;
-    private String message;
+    private boolean result;
+    private String msg;
+
+    public boolean getResult(){
+        return result;
+    }
+
 }

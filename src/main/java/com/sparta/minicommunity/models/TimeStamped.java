@@ -1,4 +1,4 @@
-package com.sparta.minicomunity.domain;
+package com.sparta.minicommunity.models;
 
 
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class TimeStamped {
+public abstract class TimeStamped {
 
     @CreatedDate
     private LocalDateTime CreatedAt;

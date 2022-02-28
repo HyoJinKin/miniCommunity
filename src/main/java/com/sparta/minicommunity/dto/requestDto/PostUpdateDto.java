@@ -1,4 +1,4 @@
-package com.sparta.minicommunity.dto;
+package com.sparta.minicommunity.dto.requestDto;
 
 import com.sparta.minicommunity.models.Post;
 import lombok.Getter;

@@ -1,16 +1,19 @@
 package com.sparta.minicommunity.controller;
 
-import com.sparta.minicommunity.dto.PostDto;
-import com.sparta.minicommunity.dto.PostRemoveDto;
-import com.sparta.minicommunity.dto.PostUpdateDto;
-import com.sparta.minicommunity.dto.ResponseDto;
+import com.sparta.minicommunity.dto.requestDto.PostDto;
+import com.sparta.minicommunity.dto.requestDto.PostRemoveDto;
+import com.sparta.minicommunity.dto.requestDto.PostUpdateDto;
+import com.sparta.minicommunity.dto.requestDto.PostFindRequestDto;
+import com.sparta.minicommunity.dto.responseDto.PostLikeResponseDto;
+import com.sparta.minicommunity.dto.responseDto.ResponseDto;
 import com.sparta.minicommunity.models.Post;
+import com.sparta.minicommunity.repository.LikeRepository;
 import com.sparta.minicommunity.repository.PostRepository;
 import com.sparta.minicommunity.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @CrossOrigin(origins = "https://spartaweek2-25f73.firebaseapp.com/")
@@ -18,29 +21,23 @@ import java.util.List;
 @RestController
 public class PostController {
 
+    private final LikeRepository likeRepository;
     private final PostRepository postRepository;
     private final PostService postService;
 
     @PostMapping("/api/post")
-    public ResponseDto creatPost(@RequestBody PostDto postDto, HttpServletRequest request){
-        Post post = new Post(postDto);
-        ResponseDto responseDto = new ResponseDto();
-
-        if (request.getSession(false) == null) { // 세션이 없을 시 로그인 요청
-            System.out.println("\n" + request.getSession(false));
-            responseDto.setResult(false);
-            responseDto.setMsg("로그인을 해주세요");
-            return responseDto;
-        }
-        responseDto.setResult(true);
-        responseDto.setMsg("등록 성공");
-        postRepository.save(post);
-        return responseDto;
+    public ResponseDto creatPost(@RequestBody PostDto postDto){
+        return postService.postingPost(postDto);
     }
 
-    @GetMapping("/api/post")
-    public List<Post> readPost() {
-        return postRepository.findAllByOrderByModifiedAtDesc();
+    @PostMapping("/api/showpost")
+    public PostLikeResponseDto readPost(@RequestBody PostFindRequestDto postfindRequestDto) {
+        PostLikeResponseDto postLikeResponseDto = new PostLikeResponseDto();
+        postLikeResponseDto.setTotal(postRepository.findAllByOrderByModifiedAtDesc());
+        postLikeResponseDto.setMyLike(likeRepository.findByUserId(postfindRequestDto.getUserId()));
+        System.out.println(postLikeResponseDto.getTotal());
+        System.out.println(postLikeResponseDto.getMyLike());
+        return postLikeResponseDto;
     }
 
     @PutMapping ("/api/post")
@@ -50,10 +47,6 @@ public class PostController {
 
     @DeleteMapping ("/api/post")
     public ResponseDto deletePost(@RequestBody PostRemoveDto postRemoveDto) {
-        postRepository.deleteById(postRemoveDto.getPostId());
-        ResponseDto responseDto = new ResponseDto();
-        responseDto.setResult(true);
-        responseDto.setMsg("삭제 완료");
-        return responseDto;
+        return postService.deletingPost(postRemoveDto);
     }
 }

@@ -1,6 +1,6 @@
 package com.sparta.minicommunity.models;
 
-import com.sparta.minicommunity.dto.LikeRequestDto;
+import com.sparta.minicommunity.dto.requestDto.LikeRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

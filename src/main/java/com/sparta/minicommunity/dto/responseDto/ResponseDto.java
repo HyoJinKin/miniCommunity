@@ -1,4 +1,4 @@
-package com.sparta.minicommunity.dto;
+package com.sparta.minicommunity.dto.responseDto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

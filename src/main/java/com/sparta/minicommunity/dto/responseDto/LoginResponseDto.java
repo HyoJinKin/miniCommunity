@@ -1,4 +1,4 @@
-package com.sparta.minicommunity.dto;
+package com.sparta.minicommunity.dto.responseDto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,7 @@ public class LoginResponseDto {
 
     private String msg;
 
-    private String username;
-
-    private String nickName;
+    private String tokenname;
 
     public boolean getResult() {
         return result;

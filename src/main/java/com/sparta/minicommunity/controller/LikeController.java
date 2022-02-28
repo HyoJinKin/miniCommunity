@@ -1,7 +1,7 @@
 package com.sparta.minicommunity.controller;
 
-import com.sparta.minicommunity.dto.LikeRequestDto;
-import com.sparta.minicommunity.dto.ResponseDto;
+import com.sparta.minicommunity.dto.requestDto.LikeRequestDto;
+import com.sparta.minicommunity.dto.responseDto.ResponseDto;
 import com.sparta.minicommunity.service.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,20 +16,9 @@ public class LikeController {
     private final LikeService likeService;
 
     // 게시글 좋아요
-    @PostMapping("api/Like")
-    public ResponseDto postLike(@RequestBody LikeRequestDto likeRequestDto, HttpServletRequest request) {
-        // 세션 존재 확인
-        ResponseDto responseDto = new ResponseDto();
-        if (request.getSession(false) == null) {
-            responseDto.setResult(false);
-            responseDto.setMsg("로그인을 해주세요");
-            return responseDto;
-        }
+    @PostMapping("api/like")
+    public ResponseDto postLike(@RequestBody LikeRequestDto likeRequestDto) {
+        System.out.println("likePlus 실행");
         return likeService.plusLike(likeRequestDto);
-    }
-
-    @DeleteMapping("api/Like")
-    public ResponseDto deleteLike(@RequestBody LikeRequestDto likeRequestDto) {
-        return likeService.delLike(likeRequestDto);
     }
 }

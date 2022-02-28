@@ -1,4 +1,4 @@
-package com.sparta.minicommunity.dto;
+package com.sparta.minicommunity.dto.requestDto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @RequiredArgsConstructor
-public class LikeRequestDto {
+public class PostRemoveDto {
 
     private Long postId;
-    private Long userId;
 }

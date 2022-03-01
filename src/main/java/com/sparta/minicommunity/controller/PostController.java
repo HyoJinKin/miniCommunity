@@ -6,15 +6,11 @@ import com.sparta.minicommunity.dto.requestDto.PostUpdateDto;
 import com.sparta.minicommunity.dto.requestDto.PostFindRequestDto;
 import com.sparta.minicommunity.dto.responseDto.PostLikeResponseDto;
 import com.sparta.minicommunity.dto.responseDto.ResponseDto;
-import com.sparta.minicommunity.models.Post;
 import com.sparta.minicommunity.repository.LikeRepository;
 import com.sparta.minicommunity.repository.PostRepository;
 import com.sparta.minicommunity.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "https://spartaweek2-25f73.firebaseapp.com/")
 @RequiredArgsConstructor
@@ -35,8 +31,6 @@ public class PostController {
         PostLikeResponseDto postLikeResponseDto = new PostLikeResponseDto();
         postLikeResponseDto.setTotal(postRepository.findAllByOrderByModifiedAtDesc());
         postLikeResponseDto.setMyLike(likeRepository.findByUserId(postfindRequestDto.getUserId()));
-        System.out.println(postLikeResponseDto.getTotal());
-        System.out.println(postLikeResponseDto.getMyLike());
         return postLikeResponseDto;
     }
 

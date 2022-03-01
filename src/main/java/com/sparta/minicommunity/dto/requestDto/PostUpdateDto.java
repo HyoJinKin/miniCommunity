@@ -24,4 +24,14 @@ public class PostUpdateDto {
         this.type = post.getType();
         this.likeCount = post.getLikeCount();
     }
+
+    ///////////////////////////////////테스트 코드 ///////////////////////
+    public PostUpdateDto (Long postId, String nickName, String contents, String image, String type, int likeCount) {
+        this.postId = postId;
+        this.nickName = nickName;
+        this.contents = contents;
+        this.image = image;
+        this.type = type;
+        this.likeCount = likeCount;
+    }
 }

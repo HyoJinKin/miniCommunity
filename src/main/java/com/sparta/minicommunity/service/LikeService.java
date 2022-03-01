@@ -1,12 +1,9 @@
 package com.sparta.minicommunity.service;
 
 import com.sparta.minicommunity.dto.requestDto.LikeRequestDto;
-import com.sparta.minicommunity.dto.requestDto.PostUpdateDto;
 import com.sparta.minicommunity.dto.responseDto.ResponseDto;
 import com.sparta.minicommunity.models.LikeNumber;
-import com.sparta.minicommunity.models.Post;
 import com.sparta.minicommunity.repository.LikeRepository;
-import com.sparta.minicommunity.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

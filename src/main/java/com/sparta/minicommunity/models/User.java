@@ -32,7 +32,7 @@ public class User extends TimeStamped implements UserDetails {
     private String password;
 
     @Column(nullable = false, unique = true)
-    private String nickName;
+    private String nickName;d
 
     public User(RegisterDto registerDto) {
         // 입력값 Validation

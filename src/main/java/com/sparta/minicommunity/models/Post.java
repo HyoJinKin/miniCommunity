@@ -62,6 +62,7 @@ public class Post extends TimeStamped {
         this.image = postUpdateDto.getImage();
         this.type = postUpdateDto.getType();
     }
+    //////////////////////////// 테스트 코드 //////////////////////
 }
 
 

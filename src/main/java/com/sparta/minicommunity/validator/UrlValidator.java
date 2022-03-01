@@ -9,9 +9,7 @@ public class UrlValidator {
         try {
             new URL(image).toURI();
             return true;
-        } catch (URISyntaxException exception) {
-            return false;
-        } catch (MalformedURLException exception) {
+        } catch (URISyntaxException | MalformedURLException exception) {
             return false;
         }
     }

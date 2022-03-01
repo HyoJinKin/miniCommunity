@@ -19,7 +19,7 @@ public class PostDto {
 
     private int likeCount;
 
-    // 테스트 코드
+    // 테스트 코드////////////////////////////////////////////////////////////
     public PostDto(String contents, String nickName, String image, String type) {
         this.contents = contents;
         this.nickName = nickName;
